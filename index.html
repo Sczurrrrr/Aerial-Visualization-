@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Przeglądaj filmy, zdjęcia i usługi z dronów, aby podziwiać przyrodę i panoramę miasta z powietrza.">
+<meta name="keywords" content="drone, video, bilder, tjenester, natur, eventyr, fly, luftfotografing">
+  <title>Aerial Visualization</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to bottom, #595959, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background-color: #555759;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #2b2b2b;
+      border-left: 5px solid #003366;
+      padding-left: 10px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    form button {
+      padding: 12px;
+      background-color: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: #0055aa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .section-title { font-size: 1.4em; }
+    }
+	/* Styl dla nagłówka h1 */
+    h2 {
+      font-size: 2.5em;
+      margin: 0;
+      color: #3498db; /* Zmieniony kolor tekstu h1 */
+    }
+
+    /* Styl dla linku w h1 */
+    h2 a {
+      text-decoration: none; /* Usuwa podkreślenie */
+      color: #16eaf5; /* Zmieniony kolor linku */
+      transition: color 0.3s; /* Dodanie płynnej zmiany koloru */
+    }
+
+    h2 a:hover {
+      color: #0ff58e; /* Kolor linku po najechaniu */
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Modal for bildevisning -->
+<div id="image-modal" class="modal">
+  <span class="close-btn">&times;</span>
+  <img id="modal-image" class="modal-content" />
+</div>
+  <header class="animated-header">
+    <h1>Aerial Visualization and Multimedia Recording via Unmanned Aerial Platforms</h1>
+    <p>Wideo, zdjęcia i mapy z powietrza</p>
+	<h2><a href="galeria.html">Galeria</a></h2>
+  </header>
+  
+
+  <main>
+  
+   
+
+    
+
+   <section>
+  <h2 class="section-title">Video</h2>
+  <div class="video-container">
+    <video id="video-player" controls>
+      <source src="video/droneeventyr.mp4" type="video/mp4" />
+      Nettleseren din støtter ikke video.
+    </video>
+  </div>
+  
+</section>
+
+   <section>
+   <div id="image-modal" class="modal">
+  <span class="close-btn">&times;</span>
+  <img id="modal-image" class="modal-content" src="" alt="Full size image">
+</div>
+  <h2 class="section-title">zdjęcia</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="bilder/bilde1.jpg" alt="Dronebilde 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="bilder/bilde2.jpg" alt="Dronebilde 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="bilder/bilde3.jpg" alt="Dronebilde 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="bilder/bilde4.jpg" alt="Dronebilde 4" />
+    </div>
+	<div class="gallery-item">
+      <img src="bilder/bilde5.jpg" alt="Dronebilde 5" />
+    </div>
+	<div class="gallery-item">
+      <img src="bilder/bilde6.jpg" alt="Dronebilde 6" />
+    </div>
+	<div class="gallery-item">
+      <img src="bilder/bilde7.jpg" alt="Dronebilde 7" />
+    </div><div class="gallery-item">
+      <img src="bilder/bilde8.jpg" alt="Dronebilde 8" />
+    </div>
+	<div class="gallery-item">
+      <img src="bilder/bilde9.jpg" alt="Dronebilde 9" />
+    </div>
+  </div>
+</section>
+
+<section>
+	
+      <h2 class="section-title">INFO</h2>
+      <div class="services">
+        <div class="service-box">
+          <h3>Studia</h3>
+          <p>Reasumując wszystkie aspekty kwintesencji tematu dochodzę do fundamentalnej konkluzji: warto studiować"-Pudzian</p>
+        </div>
+        <div class="service-box">
+          <h3>Pełen cashu wypełniony aż po brzegi</h3>
+          <p>Tak, dwa samochody dostaliśmy. Przyjechał bezdomny i dał nam dwa samochody. Pan Stanisław z Warszawy, niestety zmarł.-Rydzk</p>
+        </div>
+        
+      </div>
+    </section>
+    
+<section>
+  <h2 class="section-title">Audiowizualna reprezentacja narracyjna opatrzona werbalno-semantyczną ekstensją stanowiącą metatekstualną egzegezę dzieła.</h2>
+  <p>Wytrawna zupa przygotowywana przez kurvinoxy zazwyczaj przy okazji świąt i uroczystości, takich jak Wigilia. Składnikami potrawy jest woda (pochodząca ze śniegu) oraz sól. Zupę gotuje się w kotle nad ogniem. Uchodzi za olbrzymi przysmak. Trzeba pić ją ostrożnie, bo może być letnia.</p>
+  <h3>Lot 1</h3>
+  <p>Naszą ostatnią podróżą było przemierzanie majestatycznych fiordów Norwegii. Lataliśmy wzdłuż krawędzi fiordów, robiąc niesamowite zdjęcia i filmy dziewiczej przyrody.</p>
+  <div class="media">
+    <img src="bilder/fjord.jpg" alt="Fjordene sett fra dronen" class="fly-image">
+    <video controls>
+      <source src="video/fjord-video.mp4" type="video/mp4">
+      Din nettleser støtter ikke videoformatet.
+    </video>
+  </div>
+  
+  <h3>Lot 2</h3>
+  <p>Podczas naszego drugiego lotu lecieliśmy wysoko nad górami i z powietrza mogliśmy uchwycić niesamowite widoki na krajobraz.</p>
+  <div class="media">
+    <img src="bilder/fjell.jpg" alt="Fjellene fra luften" class="fly-image">
+    <video controls>
+      <source src="video/fjell-video.mp4" type="video/mp4">
+      Din nettleser støtter ikke videoformatet.
+    </video>
+  </div>
+</section>
+  
+    
+	 <!-- Kart Seksjon -->
+    <section>
+      <h2 class="section-title">Mapka</h2>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Aerial Visualization and Multimedia Recording via Unmanned Aerial Platforms. Wszelkie prawa zastrzeżone.
+    <br />
+    <a href="personvern.html">Prywatność</a> | <a href="vilkaar.html">Warunki korzystania</a> | <a href="omoss.html">O nas</a> 
+    <div class="social-links">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">Facebook</a>
+      <a href="#" target="_blank">YouTube</a>
+    </div>
+  </footer>
+
+  
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Modal funksjonalitet
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-image");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Hent alle bilder i galleriet
+    const images = document.querySelectorAll(".gallery img");
+
+    // Legg til event listeners for å åpne modal når bilde klikkes
+    images.forEach(img => {
+      img.addEventListener("click", (e) => {
+        modal.style.display = "flex";  // Vis modal
+        modalImg.src = e.target.src;  // Sett src til bildet som ble klikket
+      });
+    });
+
+    // Lukk modal når du klikker på "X"-knappen
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Lukk modal hvis du klikker utenfor bildet
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Leaflet kart
+    const gpsRoute = [
+      [41.841849, -89.486024],
+      [41.841876, -89.486073],
+      [41.842009, -89.486027],
+      [41.842071, -89.485885],
+      [41.842124, -89.485852],
+	  [41.842142, -89.485817],
+	  [41.842125, -89.485722],
+	  [41.842008, -89.485694],
+	  [41.841946, -89.485766],
+	  [41.841980, -89.485881],
+	  [41.841849, -89.486024],
+    ];
+
+    const map = L.map('map').setView(gpsRoute[0], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap',
+    }).addTo(map);
+
+    const polyline = L.polyline(gpsRoute, { color: 'red' }).addTo(map);
+    map.fitBounds(polyline.getBounds());
+    L.marker(gpsRoute[0]).addTo(map).bindPopup("Startpunkt").openPopup();
+    L.marker(gpsRoute[gpsRoute.length - 1]).addTo(map).bindPopup("Sluttpunkt");
+  </script>
+
+</body>
+</html>
