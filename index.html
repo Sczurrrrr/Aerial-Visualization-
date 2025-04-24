@@ -248,11 +248,11 @@
   
     
 	 <!-- Kart Seksjon -->
-    <section>
-      <h2 class="section-title">Mapka</h2>
-      <div id="map"></div>
-    </section>
-  </main>
+    #<section>
+      #<h2 class="section-title">Mapka</h2>
+     # <div id="map"></div>
+    #</section>
+  #</main>
 
   <footer>
     &copy; 2025 Aerial Visualization and Multimedia Recording via Unmanned Aerial Platforms. Wszelkie prawa zastrzeżone.
@@ -266,8 +266,8 @@
   </footer>
 
   
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
+ #<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  #<script>
     // Modal funksjonalitet
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-image");
@@ -321,7 +321,8 @@
     map.fitBounds(polyline.getBounds());
     L.marker(gpsRoute[0]).addTo(map).bindPopup("Startpunkt").openPopup();
     L.marker(gpsRoute[gpsRoute.length - 1]).addTo(map).bindPopup("Sluttpunkt");
-  </script>
+ 
+# </script>
 
 </body>
 </html>
