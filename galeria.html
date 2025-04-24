@@ -50,12 +50,13 @@
       padding: 40px;
     }
 
-    .gallery-item img {
+   .gallery-item img {
   width: 100%;
-  aspect-ratio: 1/1; /* ZDJĘCIA nadal kwadratowe */
+  max-width: 100%;
+  aspect-ratio: 1 / 1; /* ZDJĘCIA nadal kwadratowe */
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -122,39 +123,39 @@
     <h2 class="section-title">Zdjęcia</h2>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="galeria/photo1.jpg" alt="not loading">
+        <img src="galeria/photo1.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 1</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo2.jpg" alt="not loading">
+        <img src="galeria/photo2.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 2</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo3.jpg" alt="not loading">
+        <img src="galeria/photo3.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 3</div>
       </div>
 	  <div class="gallery-item">
-        <img src="galeria/photo4.jpg" alt="not loading">
+        <img src="galeria/photo4.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 4</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo5.jpg" alt="not loading">
+        <img src="galeria/photo5.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 5</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo6.jpg" alt="not loading">
+        <img src="galeria/photo6.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 6</div>
       </div>
 	  <div class="gallery-item">
-        <img src="galeria/photo7.jpg" alt="not loading">
+        <img src="galeria/photo7.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 7</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo8.jpg" alt="not loading">
+        <img src="galeria/photo8.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 8</div>
       </div>
       <div class="gallery-item">
-        <img src="galeria/photo9.jpg" alt="not loading">
+        <img src="galeria/photo9.jpg" loading="lazy" alt="not loading">
         <div class="caption">Zdjęcie 9</div>
       </div>
     </div>
@@ -164,11 +165,11 @@
   <h2 class="section-title">Wideo</h2>
   <div class="gallery">
     <div class="gallery-item">
-      <iframe src="https://www.youtube.com/embed/JL3jh-Nl3Hg" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/JL3jh-Nl3Hg" loading="lazy" allowfullscreen></iframe>
       <div class="caption">Wideo 1</div>
     </div>
     <div class="gallery-item">
-      <iframe src="https://www.youtube.com/embed/sTw-5f7x6h8" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/sTw-5f7x6h8" loading="lazy" allowfullscreen></iframe>
       <div class="caption">Wideo 2</div>
     </div>
   </div>
