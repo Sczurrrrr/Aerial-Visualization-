@@ -247,12 +247,7 @@
 </section>
   
     
-	 <!-- Kart Seksjon -->
-    #<section>
-      #<h2 class="section-title">Mapka</h2>
-     # <div id="map"></div>
-    #</section>
-  #</main>
+	 
 
   <footer>
     &copy; 2025 Aerial Visualization and Multimedia Recording via Unmanned Aerial Platforms. Wszelkie prawa zastrzeżone.
@@ -266,63 +261,7 @@
   </footer>
 
   
- #<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  #<script>
-    // Modal funksjonalitet
-    const modal = document.getElementById("image-modal");
-    const modalImg = document.getElementById("modal-image");
-    const closeBtn = document.querySelector(".close-btn");
-
-    // Hent alle bilder i galleriet
-    const images = document.querySelectorAll(".gallery img");
-
-    // Legg til event listeners for å åpne modal når bilde klikkes
-    images.forEach(img => {
-      img.addEventListener("click", (e) => {
-        modal.style.display = "flex";  // Vis modal
-        modalImg.src = e.target.src;  // Sett src til bildet som ble klikket
-      });
-    });
-
-    // Lukk modal når du klikker på "X"-knappen
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
-    // Lukk modal hvis du klikker utenfor bildet
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-
-    // Leaflet kart
-    const gpsRoute = [
-      [41.841849, -89.486024],
-      [41.841876, -89.486073],
-      [41.842009, -89.486027],
-      [41.842071, -89.485885],
-      [41.842124, -89.485852],
-	  [41.842142, -89.485817],
-	  [41.842125, -89.485722],
-	  [41.842008, -89.485694],
-	  [41.841946, -89.485766],
-	  [41.841980, -89.485881],
-	  [41.841849, -89.486024],
-    ];
-
-    const map = L.map('map').setView(gpsRoute[0], 14);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap',
-    }).addTo(map);
-
-    const polyline = L.polyline(gpsRoute, { color: 'red' }).addTo(map);
-    map.fitBounds(polyline.getBounds());
-    L.marker(gpsRoute[0]).addTo(map).bindPopup("Startpunkt").openPopup();
-    L.marker(gpsRoute[gpsRoute.length - 1]).addTo(map).bindPopup("Sluttpunkt");
  
-# </script>
 
 </body>
 </html>
