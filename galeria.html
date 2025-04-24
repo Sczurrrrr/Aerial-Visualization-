@@ -60,7 +60,8 @@
   cursor: pointer;
 }
 
-.gallery-item video {
+.gallery-item video,
+.gallery-item iframe {
   width: 110%;
   aspect-ratio: 16/11; /* FILMY podłużne */
   object-fit: cover;
@@ -68,12 +69,13 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   transition: transform 0.3s ease;
   cursor: pointer;
+  border: none;
 }
 
-    .gallery-item img:hover,
-    .gallery-item video:hover {
-      transform: scale(1.05);
-    }
+.gallery-item video:hover,
+.gallery-item iframe:hover {
+  transform: scale(1.05);
+}
 
     .caption {
       text-align: center;
@@ -158,25 +160,19 @@
     </div>
   </section>
 
-  <section>
-    <h2 class="section-title">Wideo</h2>
-    <div class="gallery">
-      <div class="gallery-item">
-        <video controls>
-          <source src="video/video1.mp4" type="video/mp4">
-          <div class="caption">Twoja przeglądarka nie obsługuje wideo.</div>
-        </video>
-        <div class="caption">Wideo 1</div>
-      </div>
-      <div class="gallery-item">
-        <video controls>
-          <source src="video/video2.mp4" type="video/mp4">
-          <div class="caption">Twoja przeglądarka nie obsługuje wideo.</div>
-        </video>
-        <div class="caption">Wideo 2</div>
-      </div>
+ <section>
+  <h2 class="section-title">Wideo</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <iframe src="https://www.youtube.com/embed/JL3jh-Nl3Hg" allowfullscreen></iframe>
+      <div class="caption">Wideo 1</div>
     </div>
-  </section>
+    <div class="gallery-item">
+      <iframe src="https://www.youtube.com/embed/sTw-5f7x6h8" allowfullscreen></iframe>
+      <div class="caption">Wideo 2</div>
+    </div>
+  </div>
+</section>
 
   <!-- Modal -->
   <div class="modal" id="image-modal">
