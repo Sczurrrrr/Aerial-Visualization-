@@ -135,6 +135,14 @@
     h2 a:hover {
       color: #0ff58e; /* Kolor linku po najechaniu */
     }
+	.video-container iframe {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+}
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -161,11 +169,12 @@
    <section>
   <h2 class="section-title">Video</h2>
   <div class="video-container">
-    <video id="video-player" controls>
-      <source src="https://www.youtube.com/watch?v=JL3jh-Nl3Hg" type="video/mp4" />
-      Nettleseren din støtter ikke video.
-    </video>
-  </div>
+  <iframe id="video-player"
+          src="https://www.youtube.com/embed/JL3jh-Nl3Hg"
+          allowfullscreen
+          loading="lazy">
+  </iframe>
+</div>
   
 </section>
 
